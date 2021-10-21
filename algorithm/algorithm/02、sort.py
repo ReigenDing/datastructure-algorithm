@@ -32,6 +32,18 @@ def bubble_sort2(alist):
     print(alist)
 
 
+# 选择排序
+# #
+def selection_sort(alist):
+    length = len(alist)
+    for j in range(length):
+        for i in range(length-j):
+            if alist[j] > alist[i+j]:
+                alist[j], alist[i+j] = alist[i+j], alist[j]
+        print(i, j, " => ", alist)
+    print(alist)
+
+
 if __name__ == "__main__":
     alist = [7 ,4, 6, 9, 1]
     alist2 = [1, 2, 3, 4, 5]
@@ -39,6 +51,7 @@ if __name__ == "__main__":
     # print(id(alist))
     # bubble_sort(alist)
     # print(alist)
-    bubble_sort2(alist)
-    bubble_sort2(alist2)
-    bubble_sort2(alist3)
+    # bubble_sort2(alist)
+    # bubble_sort2(alist2)
+    # bubble_sort2(alist3)
+    selection_sort(alist)
