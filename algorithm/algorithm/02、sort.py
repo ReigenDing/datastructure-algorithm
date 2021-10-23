@@ -1,6 +1,7 @@
 # Bubble sort冒泡排序
 
 from typing import Mapping
+import math
 
 
 def bubble_sort(alist):
@@ -36,12 +37,43 @@ def bubble_sort2(alist):
 # #
 def selection_sort(alist):
     length = len(alist)
-    for j in range(length):
+    for j in range(length-1):
         for i in range(length-j):
             if alist[j] > alist[i+j]:
                 alist[j], alist[i+j] = alist[i+j], alist[j]
         print(i, j, " => ", alist)
     print(alist)
+
+
+# 选择排序2 将最大的元素放到列表最后#
+def selection_sort(alist):
+    pass
+
+
+# 插入排序 #
+def insert_sort(alist):
+    length = len(alist)
+    for i in range(length):
+        for j in range(i+1):
+            if alist[i] < alist[j]:
+                alist[i], alist[j] = alist[j], alist[i]
+                print("i => ", i, "j => ", j, alist)
+
+
+def insert_sort2(alist):
+    length = len(alist)
+    for i in range(1, length):
+        j = i
+        while j > 0:
+            # 此处循环将每个元素和有序列表中的每个元素进行比较 #
+            if alist[j] < alist[j-1]:
+                # 如果当前元素比前一个元素小，则进行交换 #
+                alist[j], alist[j-1] = alist[j-1], alist[j]
+            else:
+                # 否则已经是有序列表，不需要交换了，退出当前循环 #
+                break
+            j -= 1
+            print("i => ", i, "j => ", j, alist)
 
 
 if __name__ == "__main__":
@@ -54,4 +86,6 @@ if __name__ == "__main__":
     # bubble_sort2(alist)
     # bubble_sort2(alist2)
     # bubble_sort2(alist3)
-    selection_sort(alist)
+    # selection_sort(alist)
+    alist4 = [54, 226, 93, 17, 77, 31,44, 55, 20]
+    insert_sort2(alist4)
