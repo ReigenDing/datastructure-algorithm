@@ -76,6 +76,42 @@ def insert_sort2(alist):
             print("i => ", i, "j => ", j, alist)
 
 
+
+def quicksort(alist, start, end):
+    """
+    快速排序
+    """
+    # 递归退出条件
+    print("start => ", start, "end => ", end)
+    if start >= end:
+        return
+    # 基准数
+    mid = alist[start]
+    low = start
+    high = end 
+
+    while low < high:
+            # 从左向右alist[high] > mid 则high -= 1
+        while alist[high] > mid and low < high:
+            high -= 1
+            # 将high索引对应的元素赋值给low
+        alist[low] = alist[high]
+        # 从左到右 alist[low] < mid, 则low += 1
+        while low < high and alist[low] < mid:
+            low += 1
+        alist[high] = alist[low]
+    # 将基准数放置到对应的位置
+    alist[low] = mid
+    print(alist)
+
+    # 比基准数小的即左边的数据，要重复调用quicksort
+    quicksort(alist, start, low-1)
+    # 比基准数大的即右边的数据，也要重复调用quicksort
+    quicksort(alist, low+1, end)
+    
+     
+
+
 if __name__ == "__main__":
     alist = [7 ,4, 6, 9, 1]
     alist2 = [1, 2, 3, 4, 5]
@@ -88,4 +124,6 @@ if __name__ == "__main__":
     # bubble_sort2(alist3)
     # selection_sort(alist)
     alist4 = [54, 226, 93, 17, 77, 31,44, 55, 20]
-    insert_sort2(alist4)
+    # insert_sort2(alist4)
+    quicksort(alist4, 0, len(alist4)-1)
+    print(alist4)
