@@ -108,9 +108,32 @@ def quicksort(alist, start, end):
     quicksort(alist, start, low-1)
     # 比基准数大的即右边的数据，也要重复调用quicksort
     quicksort(alist, low+1, end)
-    
-     
 
+# 归并排序 #
+def merge_sort(alist):
+    # 第一步 分解
+    num = len(alist)
+    # 递归结束条件 #
+    if num <= 1:
+        return alist
+    mid = num // 2
+    left_list = merge_sort(alist[0:mid])
+    right_list = merge_sort(alist[mid:])
+    # 第二步 合并
+    result = []
+    left_pointer, right_pointer = 0, 0
+    while left_pointer < len(left_list) and right_pointer < len(right_list):
+        if left_list[left_pointer] < right_list[right_pointer]:
+            result.append(left_list[left_pointer])
+            left_pointer += 1
+        else:
+            result.append(right_list[right_pointer])
+            right_pointer += 1
+    # 退出循环之后，将不为空的列表剩余元素添加到result中 #
+    result += left_list[left_pointer:]
+    result += right_list[right_pointer:]
+    # 将结果返回 #
+    return result
 
 if __name__ == "__main__":
     alist = [7 ,4, 6, 9, 1]
@@ -125,5 +148,7 @@ if __name__ == "__main__":
     # selection_sort(alist)
     alist4 = [54, 226, 93, 17, 77, 31,44, 55, 20]
     # insert_sort2(alist4)
-    quicksort(alist4, 0, len(alist4)-1)
-    print(alist4)
+    # quicksort(alist4, 0, len(alist4)-1)
+    # print(alist4)
+    res = merge_sort(alist4)
+    print(res)
