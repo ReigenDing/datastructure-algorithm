@@ -47,26 +47,73 @@ class Hash:
         return self.hash_table[hash_v][1]
 
 
-if __name__ == "__main__":
-    hash = Hash()
-    hash.put(1, "ding")
-    print(hash.get(1))
-    hash.put(6, "ding2")
-    print(hash.get(6))
-    hash.put(6, "ding7")
-    hash.put(7, "ding8")
-    hash.put(8, "ding9")
-    hash.put(9, "ding10")
-    hash.put(10, "ding11")
-    hash.put(11, "ding12")
-    hash.put(12, "ding13")
-    hash.put(13, "ding14")
-    hash.put(14, "ding15")
-    hash.put(16, "ding16")
-    hash.put(15, "ding17")
-    print(hash.get(12))
-    print(hash.get(6))
+class MyDict:
 
+    def __init__(self):
+        self.table_size = 13
+        self.key_list = [None] * self.table_size
+        self.value_list = [None] * self.table_size
+    
+    def hash_function(self, key):
+        count_char = 0
+        key_string = str(key)
+        for key_char in key_string:
+            count_char += ord(key_char)
+            print(count_char)
+        length = len(str(count_char))
+        if length > 3:
+            mid_int = 100 * int((str(count_char)[length // 2 -1])) \
+                + 10 * int((str(count_char//2)[length//2])) \
+                + 1 * int((str(count_char)[length // 2 + 1]))
+        else:
+            mid_int = count_char
+        return mid_int % self.table_size
+
+    def __setitem__(self, *args):
+        print("setitem")
+        print(args)
+
+    def __getitem__(self, *args):
+        print("getitem")
+        print(args)
+
+    def __delitem__(self, *args):
+        print("del")
+        print(args)
+    
+    def __len__(self, *args):
+        print("__len__")
+        print(args)
+        return 3
+
+
+
+if __name__ == "__main__":
+    # hash = Hash()
+    # hash.put(1, "ding")
+    # print(hash.get(1))
+    # hash.put(6, "ding2")
+    # print(hash.get(6))
+    # hash.put(6, "ding7")
+    # hash.put(7, "ding8")
+    # hash.put(8, "ding9")
+    # hash.put(9, "ding10")
+    # hash.put(10, "ding11")
+    # hash.put(11, "ding12")
+    # hash.put(12, "ding13")
+    # hash.put(13, "ding14")
+    # hash.put(14, "ding15")
+    # hash.put(16, "ding16")
+    # hash.put(15, "ding17")
+    # print(hash.get(12))
+    # print(hash.get(6))
+    mydict = MyDict()
+    mydict[0] = "test"
+    mydict[0]
+    print(len(mydict))
+    del mydict[0]
+    hash_value = mydict.hash_function("tttt2123sfdasfs")
+    print(hash_value)
 
 
 
