@@ -77,13 +77,46 @@ class MyDict:
         """
         return (hash_value + 3) % self.table_size
 
-    def __setitem__(self, *args):
+    def __setitem__(self, key, value):
         print("setitem")
-        print(args)
+        print(key, value)
+        # 计算hash值 #
+        hash_value = self.hash_function(key)
+        if self.key_list[hash_value] == None:
+            # 哈希值处为空位，则可以放置键值对 #
+            pass
+        elif self.key_list[hash_value] == key:
+            # 哈希值不为空，旧键值和新键值相同，可以修改该值 #
+            pass
+        else:
+            # 哈希值不为空，并且key值也不同，即发成了hash冲突，需要rehash #
+            hash_value = self.rehash(hash_value)
+            while (self.key_list[hash_value] != None) and (self.key_list[hash_value] != key):
+                hash_value = self.rehash(hash_value)
+        # 放置键值对 #
+        self.key_list[hash_value] = key
+        self.value_list[hash_value] = value
 
-    def __getitem__(self, *args):
+    def __getitem__(self, key):
         print("getitem")
-        print(args)
+        hash_value = self.hash_function(key)
+        first_hash = hash_value
+        if self.key_list[hash_value] == None:
+            return None
+        elif self.key_list[hash_value] == key:
+            return self.value_list[hash_value]
+        else:
+            hash_value = self.rehash(hash_value)
+            while self.key_list[hash_value] != None and self.key_list[hash_value] != key:
+                hash_value = self.rehash(hash_value)
+                if hash_value == first_hash:
+                    return None
+            if self.key_list[hash_value] == None:
+                return None
+            else: 
+                return self.value_list[hash_value]
+
+
 
     def __delitem__(self, *args):
         print("del")
