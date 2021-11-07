@@ -1,6 +1,7 @@
 import pytest
 from datastructure import hash
 
+
 @pytest.fixture
 def _hash():
     return hash.Hash()
@@ -41,9 +42,24 @@ def test_resize(_hash):
     assert got_capanility == got_capanility2
     assert want_capability == got_capanility
 
+@pytest.fixture
+def my_dict():
+    return hash.MyDict()
 
 
+@pytest.mark.parametrize(["key"], ["a", "b", "c"])
+def test_my_dict_hash(my_dict, key):
+    want = ord(key) % my_dict.table_size
+    got = my_dict.hash_function(key)
+    assert got == want
 
+
+@pytest.mark.parametrize(["key"], ["a", "b", "c"])
+def test_my_dict_rehash(my_dict, key):
+    old_hash_value = my_dict.hash_function(key)
+    got = my_dict.rehash(old_hash_value)
+    want = ((ord(key) % my_dict.table_size) +3) % my_dict.table_size
+    assert got == want 
 
 
 

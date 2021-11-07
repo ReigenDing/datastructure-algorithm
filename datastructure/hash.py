@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 
 
@@ -68,6 +69,13 @@ class MyDict:
         else:
             mid_int = count_char
         return mid_int % self.table_size
+    
+    def rehash(self, hash_value):
+        """
+        重新散列函数，返回新的散列值，hash_value为旧的散列值
+        重新散列的逻辑：向前间隔为3的线性探测
+        """
+        return (hash_value + 3) % self.table_size
 
     def __setitem__(self, *args):
         print("setitem")
