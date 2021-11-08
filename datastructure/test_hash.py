@@ -70,6 +70,7 @@ def test_my_dict_set_item(my_dict, key, value):
     want = value
     assert got == value
 
+
 @pytest.mark.parametrize(["key", "value"], [["test1", "value1"], ["test2", "value2"], ["test3", "value3"]])
 def test_my_dict_get_item(my_dict, key, value):
     my_dict[key] = value
@@ -77,6 +78,15 @@ def test_my_dict_get_item(my_dict, key, value):
     assert got == value
 
 
+@pytest.mark.parametrize(["key", "value"], [["test1", "value1"], ["test2", "value2"], ["test3", "value3"]])
+def test_my_dict_delete_item(my_dict, key, value):
+    my_dict[key] = value
+    got = my_dict[key]
+    assert got == value
+
+    del my_dict[key]
+    got = my_dict[key]
+    assert got == None
 
 
 

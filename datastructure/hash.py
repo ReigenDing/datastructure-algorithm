@@ -118,9 +118,24 @@ class MyDict:
 
 
 
-    def __delitem__(self, *args):
-        print("del")
-        print(args)
+    def __delitem__(self, key):
+        print("del %s" % key)
+        hash_value = self.hash_function(key)
+        first_hash = hash_value
+        if self.key_list[hash_value] == None:
+            return
+        if self.key_list[hash_value] == key:
+            self.key_list[hash_value] = None
+            self.value_list[hash_value] = None
+            return
+        while self.key_list[hash_value] != key:
+            hash_value = self.rehash(hash_value)
+            self.key_list[hash_value] == None
+            self.value_list[hash_value] == None
+            if hash_value == first_hash:
+                break
+
+
     
     def __len__(self, *args):
         print("__len__")
