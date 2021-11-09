@@ -140,7 +140,11 @@ class MyDict:
     def __len__(self, *args):
         print("__len__")
         print(args)
-        return 3
+        count = 0
+        for key in self.key_list:
+            if key is not None:
+                count += 1
+        return count
 
 
 

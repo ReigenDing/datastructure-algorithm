@@ -89,7 +89,11 @@ def test_my_dict_delete_item(my_dict, key, value):
     assert got == None
 
 
-
+def test_my_dict_len(my_dict):
+    test_data = [{"key": "key1", "value": "value2"}, {"key": "key2", "value": "value2"}, {"key": "key3", "value": "value3"}]
+    for item in test_data:
+        my_dict[item.get("key")] = item.get("value")
+    assert len(my_dict) == len(test_data)
 
 
 
