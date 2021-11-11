@@ -33,10 +33,28 @@ def btree():
 
 def test_pre_order(btree):
     temp = []
-    res = tree.preOrder(btree, temp)
+    res = tree.pre_order(btree, temp)
     print(res)
     print(temp)
-    assert temp == temp
+    assert temp == [1, 2, 4, 8, 9, 5, 10, 11, 3, 6, 7]
+
+
+def test_pre_order_traverse(btree):
+    res = tree.pre_order_traverse(btree)
+    assert res == [1, 2, 4, 8, 9, 5, 10, 11, 3, 6, 7]
+
+
+def test_post_order_traverse_1(btree):
+    temp = []
+    tree.post_order_traverse1(btree, temp)
+    print(temp)
+    assert temp == [8, 9, 4, 10, 11, 5, 2, 6, 7, 3, 1]
+
+
+def test_post_order_traverse_2(btree):
+    res = tree.post_order_traverse2(btree)
+    assert res == [8, 9, 4, 10, 11, 5, 2, 6, 7, 3, 1]
+
 
 
 
