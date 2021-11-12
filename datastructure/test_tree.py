@@ -56,6 +56,12 @@ def test_post_order_traverse_2(btree):
     assert res == [8, 9, 4, 10, 11, 5, 2, 6, 7, 3, 1]
 
 
+def test_in_order_traverse1(btree):
+    temp = []
+    tree.in_order_traverse1(btree, temp)
+    assert temp == [8, 4, 9, 2, 10, 5, 11, 1, 6, 3, 7]
 
-
-
+def test_in_order_traverse2(btree):
+    res = tree.in_order_traverse2(btree)
+    assert res == [8, 4, 9, 2, 10, 5, 11, 1, 6, 3, 7]
+    
