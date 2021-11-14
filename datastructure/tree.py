@@ -79,7 +79,7 @@ def in_order_traverse2(node: BinaryTree):
     """
     非递归实现中序遍历 = >LDR
     """
-    stack = [node]
+    stack = []
     temp = []
     pos = node
 
@@ -92,7 +92,6 @@ def in_order_traverse2(node: BinaryTree):
             print(pos.value)
             temp.append(pos.value)
             pos = pos.right
-    print(temp)
     return temp
 
 
